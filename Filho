@@ -1,0 +1,38 @@
+public class Filho extends Thread {
+
+    int num;
+    String nome;
+    
+    public Filho(int numero, String nomeT) {
+        this.num = numero;
+        this.nome = nomeT;
+    }
+
+    @Override
+    public void run() {
+        Pai p = new Pai();
+        
+        try {
+            if (num == 0) {
+                System.out.println("O valor da Thread " + nome + " era " + p.numeros[num]);
+                p.numeros[num]++;
+                System.out.println("Apos o incremento, ficou " + p.numeros[num]);
+            }
+            if (num == 1) {
+                sleep(100);
+                System.out.println("O valor da Thread " + nome + " era " + p.numeros[num]);
+                p.numeros[num] = p.numeros[num] + p.numeros[num];
+                System.out.println("Apos a soma, ficou " + p.numeros[num]);
+            }
+            if (num == 2) {
+                sleep(200);
+                System.out.println("O valor da Thread " + nome + " era " + p.numeros[num]);
+                p.numeros[num] = p.numeros[num] * p.numeros[num];
+                System.out.println("Apos a multiplicacao, ficou " + p.numeros[num]);
+            }
+            
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
