@@ -1,40 +1,28 @@
 package Pai;
 
-public class Filho extends Thread {
+public class Pai {
 
-    int num, r;
-    String nome;
+    protected int numero = 10;
     
-    public Filho(int numero, String nomeT) {
-        this.num = numero;
-        this.nome = nomeT;
-        this.r = 0;
-    }
-
-    @Override
-    public void run() {
-        Pai p = new Pai();
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Agora vamos compartilhar essa memoria");
         
-        try{
-            if (num == 0) {
-                System.out.println("O valor da Thread " + nome + " era " + p.numero);
-                r = p.numero + p.numero;
-                System.out.println("Apos a soma, ficou " + r);
-            }
-            if (num == 1) {
-                sleep(50);
-                System.out.println("O valor da Thread " + nome + " era " + p.numero);
-                r = p.numero - p.numero;
-                System.out.println("Apos a subtração, ficou " + r);
-            }
-            if (num == 2) {
-                sleep(100);
-                System.out.println("O valor da Thread " + nome + " era " + p.numero);
-                r = p.numero * p.numero;
-                System.out.println("Apos a multiplicacao, ficou " + r);
-            }
-        }  catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread f1 = new Filho(0, "Primogenito");
+        Thread f2 = new Filho(1, "Do Meio");
+        Thread f3 = new Filho(2, "Cacula");
+        
+        System.out.println("Vamos comecar:");
+        
+        f1.start();
+        f2.start();
+        f3.start();
+        
+        f1.join();
+        f2.join();
+        f3.join();
+        
+        System.out.println("É HORA DE DAR TCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU!");
+        System.out.println("TCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU!");
     }
+    
 }
