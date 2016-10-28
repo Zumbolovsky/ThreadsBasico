@@ -1,37 +1,39 @@
+package Pai;
+
 public class Filho extends Thread {
 
-    int num;
+    int num, r;
     String nome;
     
     public Filho(int numero, String nomeT) {
         this.num = numero;
         this.nome = nomeT;
+        this.r = 0;
     }
 
     @Override
     public void run() {
         Pai p = new Pai();
         
-        try {
+        try{
             if (num == 0) {
-                System.out.println("O valor da Thread " + nome + " era " + p.numeros[num]);
-                p.numeros[num]++;
-                System.out.println("Apos o incremento, ficou " + p.numeros[num]);
+                System.out.println("O valor da Thread " + nome + " era " + p.numero);
+                r = p.numero + p.numero;
+                System.out.println("Apos a soma, ficou " + r);
             }
             if (num == 1) {
-                sleep(100);
-                System.out.println("O valor da Thread " + nome + " era " + p.numeros[num]);
-                p.numeros[num] = p.numeros[num] + p.numeros[num];
-                System.out.println("Apos a soma, ficou " + p.numeros[num]);
+                sleep(50);
+                System.out.println("O valor da Thread " + nome + " era " + p.numero);
+                r = p.numero - p.numero;
+                System.out.println("Apos a subtração, ficou " + r);
             }
             if (num == 2) {
-                sleep(200);
-                System.out.println("O valor da Thread " + nome + " era " + p.numeros[num]);
-                p.numeros[num] = p.numeros[num] * p.numeros[num];
-                System.out.println("Apos a multiplicacao, ficou " + p.numeros[num]);
+                sleep(100);
+                System.out.println("O valor da Thread " + nome + " era " + p.numero);
+                r = p.numero * p.numero;
+                System.out.println("Apos a multiplicacao, ficou " + r);
             }
-            
-        } catch (InterruptedException e) {
+        }  catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
