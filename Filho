@@ -1,28 +1,40 @@
-package Pai;
+package testandothreads;
 
-public class Pai {
+public class Filho extends Thread {
 
-    protected int numero = 10;
-    
-    public static void main(String[] args) throws InterruptedException {
-        System.out.println("Agora vamos compartilhar essa memoria");
-        
-        Thread f1 = new Filho(0, "Primogenito");
-        Thread f2 = new Filho(1, "Do Meio");
-        Thread f3 = new Filho(2, "Cacula");
-        
-        System.out.println("Vamos comecar:");
-        
-        f1.start();
-        f2.start();
-        f3.start();
-        
-        f1.join();
-        f2.join();
-        f3.join();
-        
-        System.out.println("É HORA DE DAR TCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU!");
-        System.out.println("TCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU!");
+    int num, r;
+    String nome;
+
+    public Filho(int numero, String nomeT) {
+        this.num = numero;
+        this.nome = nomeT;
     }
-    
+
+    @Override
+    public void run() {
+        Pai p = new Pai();
+
+        try {
+            if (num == 0) {
+                r = p.numero + p.numero;
+                System.out.println("Thread Joaquim: " + r);
+
+            }
+            if (num == 1) {
+                sleep(50);
+                r = p.numero - p.numero;
+                System.out.println("Thread Zuleide: " + r);
+
+            }
+            if (num == 2) {
+                sleep(100);
+                r = p.numero * p.numero;
+                System.out.println("Thread Beto: " + r);
+
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
+        }
+    }
 }
